@@ -56,6 +56,10 @@
 #ifndef __gl3w_h_
 #define __gl3w_h_
 
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+
 // Adapted from KHR/khrplatform.h to avoid including entire file.
 #ifndef __khrplatform_h_
 typedef          float         khronos_float_t;
@@ -534,6 +538,7 @@ union GL3WProcs {
 
 GL3W_API extern union GL3WProcs imgl3wProcs;
 
+#ifndef __APPLE__
 /* OpenGL functions */
 #define glActiveTexture                   imgl3wProcs.gl.ActiveTexture
 #define glAttachShader                    imgl3wProcs.gl.AttachShader
@@ -594,6 +599,7 @@ GL3W_API extern union GL3WProcs imgl3wProcs;
 #define glUseProgram                      imgl3wProcs.gl.UseProgram
 #define glVertexAttribPointer             imgl3wProcs.gl.VertexAttribPointer
 #define glViewport                        imgl3wProcs.gl.Viewport
+#endif
 
 #ifdef __cplusplus
 }
